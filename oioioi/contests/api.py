@@ -248,7 +248,7 @@ class SubmitSolutionView(views.APIView):
     parser_classes = (MultiPartParser,)
 
     # This method should be implemented by subclasses.
-    def get_problem_instance(self, request, **kwargs):
+    def get_problem_instance(self, _request, **kwargs):
         raise NotImplementedError
 
     def post(self, request, **kwargs):
@@ -328,7 +328,7 @@ class SubmitProblemsetSolutionView(SubmitSolutionView):
             404: OpenApiTypes.OBJECT,
         },
     )
-    def get_problem_instance(self, request, problem_site_key):  # noqa: ARG002
+    def get_problem_instance(self, _request, problem_site_key):
         problem = get_object_or_404(Problem, problemsite__url_key=problem_site_key)
         pi = problem.main_problem_instance
         if not pi:
