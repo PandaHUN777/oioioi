@@ -294,9 +294,7 @@ class SubmitContestSolutionView(SubmitSolutionView):
         },
     )
     def get_problem_instance(self, request, contest_name, problem_short_name):
-        contest = get_object_or_404(
-            visible_contests_as_django_queryset(request), id=contest_name
-        )
+        contest = get_object_or_404(visible_contests_as_django_queryset(request), id=contest_name)
         request.contest = contest
 
         problem_instance = get_object_or_404(
